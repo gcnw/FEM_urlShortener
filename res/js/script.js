@@ -3,14 +3,21 @@ const inputButton = document.getElementById('shorten-it-button');
 const errorText = document.getElementById('error-text')
 const siteIcons = document.getElementsByClassName('site-icon');
 const shortlyContainer = document.getElementById('shortened-urls-container');
+const hamburger = document.getElementById('hamburger');
 
 let jsonRes = {};
+
+hamburger.addEventListener('click', toggleHamburger);
+
+function toggleHamburger() {
+
+}
 
 for(let item of siteIcons){
   item.addEventListener('mouseover', (event) => {
     const object=event.target.contentDocument;
       const svg = object.getElementById('icon-color');
-      svg.style.fill = '#2BD0D0';
+      svg.style.fill = '#2bd0d0';
   })
   item.addEventListener('mouseout', (event) => {
     const object=event.target.contentDocument;
@@ -22,8 +29,10 @@ for(let item of siteIcons){
 async function shortenIt(url){
   const fetchURL = `https://api.shrtco.de/v2/shorten?url=${url}`;
   if(url === null || url === "Shorten a link here..." || url === ""){
-    inputURL.style.border = "2px solid red";
-    inputURL.style.bordercolor = "red";
+    inputURL.style.border = "2px solid #f46363";
+    inputURL.style.bordercolor = "#f46363";
+    inputURL.style.color = "#f46363";
+    inputURL.value = "Shorten a link here...";
     errorText.style.display = "inline";
     errorText.innerHTML = "Please add a link";
   }
@@ -81,10 +90,10 @@ function createLinkDiv(urlObject) {
 
 inputButton.addEventListener('click',() => {
   shortenIt(inputURL.value);
-  inputURL.value = "";
 })
 
 inputURL.addEventListener('click',() => {
   inputURL.value = "";
+  inputURL.style.color = "";
 })
 

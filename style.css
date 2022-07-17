@@ -9,8 +9,8 @@
 
 /* DECLARE VARIABLES AND SETUP FONT SIZING*/
 :root {
-  --element-width: 80%;  
-  --shorten-width: 60%;
+  --element-width: 100%;  
+  --shorten-width: 80%;
       font-size: 62.5%;   /* IF DEFAULT IS 16PX THIS IS 10PX*/
 }
 
@@ -20,6 +20,8 @@ body {
 
 .app {
   position: absolute;
+  overflow: hidden;
+
   display: grid;
   place-items: center;
   z-index: -99;
@@ -28,13 +30,13 @@ body {
 /* NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR*/
 /**/
 
-.hamburger {
-  display: none;
+#hamburger {
+  display: flex;
   position: absolute;
   width: 40px;
   height: 40px;
   top: 1rem;
-  right: 10%;
+  right: 0;
   background: linear-gradient(to bottom, white 10%, black 10% 18%, white 18% 46%, 
                                          black 46% 54%, white 54% 82%, black 82% 90%, white 90%);
 }
@@ -115,20 +117,28 @@ body {
     justify-content: space-between;
     width: var(--element-width);
     padding-bottom: 0em;
+    padding: 0 10%;
+}
+
+.page-top-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 }
 
 
 .page-top h1 {
-    width: auto;
     font-size: 5.5rem;
-    line-height: 1;
+    line-height: 6.5rem;
     letter-spacing: -2px;
+    text-align: center;
 }
 
 .page-top p {
-    width: 60%;
     color: #9e9aa8;
-    margin: 1rem 0;
+    margin: 3rem 0;
 } 
 
 .page-top button {
@@ -147,7 +157,9 @@ body {
 
 .page-top img {
     position: relative;
-    left: 7rem;
+    /* max-width: 50%; */
+    height: auto;
+    overflow: clip;
 }
 
 .url-input {
@@ -162,7 +174,7 @@ body {
     background-color: rgba(58, 27, 99, 0.778);
     border-radius: 0.625rem;
     bottom: -7.5rem;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
 }
 
 #shorten-it-button {
@@ -194,7 +206,7 @@ body {
     position: relative;
     display: block;
     justify-self: flex-start;
-    color: red;
+    color: #F46363;
     top: -3rem;
     left: 25%;
     font-style: italic;
@@ -284,6 +296,7 @@ body {
   position: relative;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   padding-top: 4rem;
   padding-bottom: 6rem;
 }
@@ -317,11 +330,11 @@ body {
     display: grid;
     place-items: center;
     position: absolute;
-    top: -2.5rem;
+    top: -3.75rem;
     background-color: #3a3054;
     border-radius: 50%;
-    height: 5rem;
-    width: 5rem;
+    height: 7.5rem;
+    width: 7.5rem;
 }
 
 .brag-box {
@@ -330,17 +343,16 @@ body {
   width: var(--element-width);
   background: 
   linear-gradient(to right, #f2f2f2 30%, rgba(0,0,0,0) 30% 80%, #f2f2f2 80%),
-  linear-gradient(to bottom, #f2f2f2 49.5%, #2bd0d0 49.5% 50.5%, #f2f2f2 50.5%);
-
+  linear-gradient(to bottom, #f2f2f2 49.0%, #2bd0d0 49.0% 51%, #f2f2f2 51%);
 }
 
 .specific-brag h3 {
-    padding-top: 2.5rem;
+    padding: 5.5rem 0 3rem 0;
 }
 
 .specific-brag p {
     color: #9e9aa8;
-    padding-bottom: 1rem;
+    padding-bottom: 4rem;
 }
 
 #brand-recognition {
@@ -387,7 +399,7 @@ body {
 }
 
 
-.Footer {
+.footer {
     display: flex;
     position: relative;
     align-items: top;
@@ -397,7 +409,7 @@ body {
     padding-top: 7rem;
 }
 
-.Footer > img {
+.footer > img {
     position: relative;
     left: 8rem;
     height: 2rem;
@@ -444,55 +456,162 @@ body {
     margin: 0 1.5rem 0 0;
 }
 
-@media only screen and (max-width:50rem) {
+@media only screen and (max-width:55rem) {
   :root {
-    --element-width: 90%;  
-    --shorten-width: 80%;
+    --element-width: 100%;  
+    --shorten-width: 90%;
         font-size: 62.5%;   /* IF DEFAULT IS 16PX THIS IS 10PX*/
   }
 
   .page-top {
     flex-direction: column-reverse;
     align-items: center;
+    width: 100%;
+  }
+
+  .page-top-text {
+    width: var(--shorten-width);
+  }
+
+  .page-top-text h1 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    margin-top: 3rem;
+  }
+
+  .page-top-text p {
+    font-size: 1.125rem;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  .page-top img {
+    width: 100%;
   }
 
   .url-input {
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     height: 11.375rem;
+    bottom: -7.5rem;
   }
 
   .url-input input {
-    position: relative;
     height: 3rem;
     width: 90%;
-    margin: 0;
-    padding: 0;
+    padding: 0 0 0 0;
+    margin: 1rem;
   }
 
   #shorten-it-button {
     height: 3rem;
     width: 90%;
-    margin: 0;
+    margin: 1rem;
     padding: 0;
+  }
+
+  #error-text {
+    top: 1rem;
+    left: 10%;
+    font-size: 1rem;
   }
 
   .brag-box {
     flex-direction: column;
+    align-items: center;
+    width: var(--shorten-width);
     background: linear-gradient(to right,
-    white 49.5%, #2bd0d0 49.5% 50.5%, white 50.5%);
-    border: 5px solid green;
+    #f2f2f2 49.5%, #2bd0d0 49.5% 50.5%, #f2f2f2 50.5%);
+    margin-bottom: 2rem;
   }
 
   .specific-brag {
-    margin: 0;
+    margin: 1rem 0;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .main-nav {
+    flex-direction: column;
   }
 
   .nav-bar {
-    display: none;
+    display: flex;
+    position: absolute;
+    top: 5rem;
+    width: 90%;
+    height: fit-content;
+    flex-direction: column;
+    box-shadow: 0px 0px 20px #2BD0D0;
+    z-index: 5;
+    background-color: #3a3054;
+    border-radius: 10px;
   }
+
+  .info-nav {
+    flex-direction: column;
+  }
+
+  .info-nav p, .action-nav p {
+    margin: 1rem 0;
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+
+  .action-nav {
+    flex-direction: column;
+  }
+
+  .action-nav button {
+    height: 2.65rem;
+    width: 7rem;
+    /* font-size: 7em; */
+    border-radius: 2rem;
+    background: #2bd0d0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 1rem 0;
+}
 
   .hamburger {
     display: inline;
+  }
 
+  .footer, .footer-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer > img {
+    position: relative;
+    left: 0rem;
+    height: 4rem;
+    width: auto;
+    margin: 0 0 1rem 0;
+}
+
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    
+    justify-content: center;
+    margin-bottom: 4rem;
+  }
+
+  .footer-info  ul {
+    margin: 2.5rem 0;
+  }
+
+  .footer-info > ul > li {
+    font-weight: 500;
+    margin:2rem 0;
+    color: #bfbfbf;
   }
 }
