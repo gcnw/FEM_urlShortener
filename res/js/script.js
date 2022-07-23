@@ -4,13 +4,22 @@ const errorText = document.getElementById('error-text')
 const siteIcons = document.getElementsByClassName('site-icon');
 const shortlyContainer = document.getElementById('shortened-urls-container');
 const hamburger = document.getElementById('hamburger');
+const navigation = document.getElementById('nav-bar')
 
 let jsonRes = {};
 
 hamburger.addEventListener('click', toggleHamburger);
 
 function toggleHamburger() {
+  if(navigation.style.animationName === "menu-slide-in") {
+    navigation.style.animationName = "menu-slide-out";
+    navigation.style.left = "110%";
+    }
+  else {
+    navigation.style.animationName = "menu-slide-in";
+    navigation.style.left = "5%";
 
+  }
 }
 
 for(let item of siteIcons){
@@ -55,23 +64,22 @@ async function shortenIt(url){
 
 function createLinkDiv(urlObject) {
   if(document.getElementById(`${urlObject.code}`) === null){
-    console.log('hello')
     shortlyContainer.innerHTML += 
       ` <div class="link-container">
-        <p>
-          <a id="full-link" href="${urlObject.original_link}" target="_blank">
-            ${urlObject.original_link}
-          </a>
-        </p>
-        <div>
           <p>
-            <a id="short-link" href="${urlObject.full_short_link}" target="_blank">
-              ${urlObject.short_link}
+            <a id="full-link" href="${urlObject.original_link}" target="_blank">
+              ${urlObject.original_link}
             </a>
           </p>
-          <button
-            id="${urlObject.code}" 
-            class="copy-link-button">Copy</button>
+          <div>
+            <p>
+              <a id="short-link" href="${urlObject.full_short_link}" target="_blank">
+                ${urlObject.short_link}
+              </a>
+            </p>
+            <button
+              id="${urlObject.code}" 
+              class="copy-link-button">Copy</button>
         </div>
       </div>`; 
       setTimeout(function() {
@@ -80,7 +88,7 @@ function createLinkDiv(urlObject) {
           navigator.clipboard.writeText(`${jsonRes.full_short_link}`);
           copyButton.style.backgroundColor = "#3a3054";
           copyButton.innerHTML = "Copied!"
-          })  
+          })
       }, 1000);
   }
   else {
@@ -90,6 +98,12 @@ function createLinkDiv(urlObject) {
 
 inputButton.addEventListener('click',() => {
   shortenIt(inputURL.value);
+})
+
+inputURL.addEventListener('keypress',(event) => {
+  if(event.key === "Enter"){
+    shortenIt(inputURL.value);
+  }
 })
 
 inputURL.addEventListener('click',() => {

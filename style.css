@@ -31,7 +31,7 @@ body {
 /**/
 
 #hamburger {
-  display: flex;
+  display: none;
   position: absolute;
   width: 40px;
   height: 40px;
@@ -52,7 +52,7 @@ body {
 }
 
 
-.nav-bar {
+#nav-bar {
     display: flex;
     justify-content: space-between;
     width: var(--element-width);
@@ -463,6 +463,10 @@ body {
         font-size: 62.5%;   /* IF DEFAULT IS 16PX THIS IS 10PX*/
   }
 
+  #hamburger {
+    display: flex;
+  }
+
   .page-top {
     flex-direction: column-reverse;
     align-items: center;
@@ -537,10 +541,12 @@ body {
     flex-direction: column;
   }
 
-  .nav-bar {
+  #nav-bar {
     display: flex;
+    align-items: center;
     position: absolute;
     top: 5rem;
+    left: 110%;
     width: 90%;
     height: fit-content;
     flex-direction: column;
@@ -548,10 +554,23 @@ body {
     z-index: 5;
     background-color: #3a3054;
     border-radius: 10px;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes menu-slide-in {
+    from {left: 110%;}
+    to {left: 5%}
+  }
+
+  @keyframes menu-slide-out {
+    from {left: 5%;}
+    to {left: 110%}
   }
 
   .info-nav {
     flex-direction: column;
+    border-bottom: 2px solid #9e9aa848;
+    width: 80%;
   }
 
   .info-nav p, .action-nav p {
@@ -559,6 +578,10 @@ body {
     color: white;
     font-weight: 700;
     font-size: 1.125rem;
+  }
+
+  .info-nav p:hover, .action-nav p:hover {
+    color: #2BD0D0;
   }
 
   .action-nav {
@@ -613,5 +636,38 @@ body {
     font-weight: 500;
     margin:2rem 0;
     color: #bfbfbf;
+  }
+
+  #shortened-urls-container {
+    width: 90%;
+  }
+
+  .link-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .link-container p {
+    padding: 0 0 1rem 0;
+  }
+
+  .link-container > div {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 1rem;
+    width: 100%;
+    border-top: 2px solid #9e9aa848;
+
+  }
+
+  .link-container > div button {
+    width: 100%;
+    margin: 0rem;
+  }
+  
+  #full-link {
+    margin: 0rem;
   }
 }
